@@ -1,0 +1,33 @@
+{
+  "version": "0.1",
+  "name": "appointments.flow.json",
+  "startNode": "start",
+  "nodes": [
+    {
+      "name": "start",
+      "onEnter": [
+        {
+          "type": "action",
+          "name": "fetchScheduleFromBackend",
+          "args": { "userId": "{{user.id}}" },
+          "storeResultIn": "temp.schedule"
+        }
+      ],
+      "next": [
+        { "condition": "true", "node": "show_schedule" }
+      ]
+    },
+    {
+      "name": "show_schedule",
+      "onEnter": [
+        {
+          "type": "say",
+          "text": "Your next antenatal visit is on {{temp.schedule.nextVisit}}. Upcoming reminders: {{temp.schedule.pendingItems}}."
+        }
+      ],
+      "next": [
+        { "condition": "true", "node": "main.flow.json::main_menu" }
+      ]
+    }
+  ]
+}

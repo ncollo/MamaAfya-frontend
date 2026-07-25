@@ -1,0 +1,44 @@
+{
+  "version": "0.1",
+  "name": "emergency.flow.json",
+  "startNode": "start",
+  "nodes": [
+    {
+      "name": "start",
+      "onEnter": [
+        {
+          "type": "say",
+          "text": "This will immediately alert your CHW, partner, and linked clinic with your location. Confirm?",
+          "quickReplies": [
+            { "label": "Yes, send help now", "value": "confirm" },
+            { "label": "No, cancel", "value": "cancel" }
+          ]
+        }
+      ],
+      "onReceive": [
+        { "type": "captureInput", "into": "temp.confirm" }
+      ],
+      "next": [
+        { "condition": "temp.confirm === 'confirm'", "node": "trigger_emergency" },
+        { "condition": "true", "node": "main.flow.json::main_menu" }
+      ]
+    },
+    {
+      "name": "trigger_emergency",
+      "onEnter": [
+        {
+          "type": "action",
+          "name": "triggerEmergency",
+          "args": { "userId": "{{user.id}}", "location": "{{user.lastKnownLocation}}" }
+        },
+        {
+          "type": "say",
+          "text": "Help is on the way. Your CHW, clinic, and partner have been notified with your location. Stay calm and stay on the line if possible."
+        }
+      ],
+      "next": [
+        { "condition": "true", "node": "main.flow.json::main_menu" }
+      ]
+    }
+  ]
+}
