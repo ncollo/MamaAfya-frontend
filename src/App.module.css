@@ -11,6 +11,15 @@
   min-height: 100vh;
 }
 
+.contentAreaNoSidebar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 /* On desktop, push content right of sidebar */
 @media (min-width: 1024px) {
   .contentArea { margin-left: 288px; }

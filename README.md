@@ -1,16 +1,16 @@
-# MamaAfya — NurtureHome CHW Dashboard
+# MamaAfya Chatbot
 
-> A Community Health Worker (CHW) triage dashboard for maternal health monitoring in Kenya.  
-> Built with **React + Vite**,
+a conversational front-end for **MamaAfya**, a unified maternal health platform
+bridging expectant mothers, Community Health Workers (CHWs) & healthcare
+facilities in Kenya.
 
----
+## why Botpress Community
 
 ## Overview
 
-**MamaAfya** is a maternal health platform designed for Community Health Workers (CHWs) operating in Kenya. This repository contains the **CHW Triage Dashboard** — the professional-facing interface where health workers review and prioritize patient alerts sourced from AI Chatbot escalations, SMS survey responses, and automated system logs.
+## what this chatbot does
 
---- 
-## Team assignment
+mirrors the **Mother's Journey** from the system concept doc:
 
 CHW Triage Dashboard---Done by Abdinasir Jibril.
 Mama Afya Dashboard ---Done--by Maryaane.
@@ -18,8 +18,11 @@ MamaBot Chat & System Reporting--planned.
 Pregnancy Nutration--- Done.
 Mama Afya Home Dashboard----planned
 
+all logic is channel-agnostic: the same risk rules and alert pipeline also
+power the USSD gateway (`*384#`) stub included here, so a mother on a basic
+phone and a mother on the PWA get identical outcomes.
 
-## Project Structure
+## project structure
 
 ```text
 mamaafya/

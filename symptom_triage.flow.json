@@ -1,0 +1,93 @@
+{
+  "version": "0.1",
+  "name": "symptom_triage.flow.json",
+  "startNode": "start",
+  "nodes": [
+    {
+      "name": "start",
+      "onEnter": [
+        {
+          "type": "say",
+          "text": "Which symptom would you like to report?",
+          "quickReplies": [
+            { "label": "1. Vaginal bleeding", "value": "bleeding" },
+            { "label": "2. Severe headache / blurred vision", "value": "headache" },
+            { "label": "3. Reduced fetal movement", "value": "fetal_movement" },
+            { "label": "4. Fever", "value": "fever" },
+            { "label": "5. Mild nausea / other minor symptom", "value": "minor" },
+            { "label": "0. Back to menu", "value": "back" }
+          ]
+        }
+      ],
+      "onReceive": [
+        { "type": "captureInput", "into": "temp.symptom" }
+      ],
+      "next": [
+        { "condition": "temp.symptom === 'back'", "node": "main.flow.json::main_menu" },
+        { "condition": "true", "node": "assess_risk" }
+      ]
+    },
+    {
+      "name": "assess_risk",
+      "onEnter": [
+        {
+          "type": "action",
+          "name": "checkRisk",
+          "args": { "symptom": "{{temp.symptom}}" },
+          "storeResultIn": "temp.riskLevel"
+        }
+      ],
+      "next": [
+        { "condition": "temp.riskLevel === 'high'", "node": "high_risk_response" },
+        { "condition": "temp.riskLevel === 'medium'", "node": "medium_risk_response" },
+        { "condition": "true", "node": "low_risk_response" }
+      ]
+    },
+    {
+      "name": "high_risk_response",
+      "onEnter": [
+        {
+          "type": "action",
+          "name": "notifyCHW",
+          "args": { "reason": "high_risk_symptom", "symptom": "{{temp.symptom}}", "priority": "urgent" }
+        },
+        {
+          "type": "say",
+          "text": "This symptom needs urgent attention. I've alerted your CHW and clinic right now. If you feel this is a life-threatening emergency, reply EMERGENCY or use the panic button."
+        }
+      ],
+      "next": [
+        { "condition": "true", "node": "main.flow.json::main_menu" }
+      ]
+    },
+    {
+      "name": "medium_risk_response",
+      "onEnter": [
+        {
+          "type": "action",
+          "name": "notifyCHW",
+          "args": { "reason": "medium_risk_symptom", "symptom": "{{temp.symptom}}", "priority": "normal" }
+        },
+        {
+          "type": "say",
+          "text": "Thanks for reporting this. It's been logged and your CHW will follow up within 24 hours. Please rest and stay hydrated."
+        }
+      ],
+      "next": [
+        { "condition": "true", "node": "main.flow.json::main_menu" }
+      ]
+    },
+    {
+      "name": "low_risk_response",
+      "onEnter": [
+        {
+          "type": "say",
+          "text": "This is common in pregnancy and usually not a cause for concern, but it's been recorded in your file. Reply 'menu' if you need anything else."
+        }
+      ],
+      "next": [
+        { "condition": "true", "node": "main.flow.json::main_menu" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "version": "0.1",
+  "name": "nutrition.flow.json",
+  "startNode": "start",
+  "nodes": [
+    {
+      "name": "start",
+      "onEnter": [
+        {
+          "type": "say",
+          "text": "Here's a local diet tip for this trimester: enjoy uji (fortified porridge) for iron & energy, and kunde (cowpea leaves) for folate. Would you also like a quick mental wellbeing check-in?",
+          "quickReplies": [
+            { "label": "Yes, check in", "value": "checkin" },
+            { "label": "No, back to menu", "value": "back" }
+          ]
+        }
+      ],
+      "onReceive": [
+        { "type": "captureInput", "into": "temp.wellbeingChoice" }
+      ],
+      "next": [
+        { "condition": "temp.wellbeingChoice === 'checkin'", "node": "wellbeing_checkin" },
+        { "condition": "true", "node": "main.flow.json::main_menu" }
+      ]
+    },
+    {
+      "name": "wellbeing_checkin",
+      "onEnter": [
+        {
+          "type": "say",
+          "text": "On a scale of 1 (very low) to 5 (great), how are you feeling emotionally this week?"
+        }
+      ],
+      "onReceive": [
+        { "type": "captureInput", "into": "temp.moodScore" }
+      ],
+      "next": [
+        { "condition": "Number(temp.moodScore) <= 2", "node": "low_mood_response" },
+        { "condition": "true", "node": "ok_mood_response" }
+      ]
+    },
+    {
+      "name": "low_mood_response",
+      "onEnter": [
+        {
+          "type": "action",
+          "name": "notifyCHW",
+          "args": { "reason": "low_mood_screening", "priority": "normal" }
+        },
+        {
+          "type": "say",
+          "text": "Thank you for sharing. I've let your CHW know so they can check in with you. You're not alone in this."
+        }
+      ],
+      "next": [
+        { "condition": "true", "node": "main.flow.json::main_menu" }
+      ]
+    },
+    {
+      "name": "ok_mood_response",
+      "onEnter": [
+        { "type": "say", "text": "Glad to hear it. Keep taking care of yourself — reply 'menu' anytime." }
+      ],
+      "next": [
+        { "condition": "true", "node": "main.flow.json::main_menu" }
+      ]
+    }
+  ]
+}

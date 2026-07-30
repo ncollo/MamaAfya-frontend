@@ -1,0 +1,24 @@
+<!--
+  Drop this snippet into the MamaAfya PWA's shell (e.g. index.html or a
+  React portal) to embed the Botpress webchat widget. Botpress Community
+  ships this exact `webchat/inject.js` script + config pattern once the bot
+  is deployed (locally via `docker compose up` or to any Node host).
+-->
+<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script>
+  window.botpressWebChat.init({
+    host: "http://localhost:3001", // your self-hosted Botpress server
+    botId: "mamaafya",
+    hideWidget: false,
+    stylesheet: "/webchat-theme.css", // optional: match MamaAfya's PWA branding
+    showConversationsButton: false,
+    enableTranscriptDownload: false,
+    composerPlaceholder: "Type a message or tap a menu option...",
+  });
+
+  // Optional: let the rest of the PWA open the chat programmatically,
+  // e.g. from a "Talk to MamaAfya" button on the dashboard.
+  function openMamaAfyaChat() {
+    window.botpressWebChat.sendEvent({ type: "show" });
+  }
+</script>

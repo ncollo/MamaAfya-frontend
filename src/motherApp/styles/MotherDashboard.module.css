@@ -1,0 +1,841 @@
+
+
+.page{
+    min-height:100vh;
+    background:#F7F6F2;
+    padding-bottom:120px;
+}
+
+.container{
+    width:92%;
+    max-width:1300px;
+    margin:auto;
+    margin-top:-45px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.heroSection,
+.secondRow,
+.cardSection,
+.healthSection{
+    width:100%;
+}
+
+.sectionHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
+}
+
+.sectionHeader h2{
+    font-size:1.3rem;
+    color:#234F3D;
+    font-weight:700;
+}
+
+.sectionHeader p{
+    color:#777;
+    font-size:.9rem;
+}
+
+
+
+.header{
+    background:linear-gradient(160deg,#2D6A4F 0%,#40916C 100%);
+    padding:35px 60px 80px;
+    color:white;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.headerLeft h1{
+    font-size:2.7rem;
+    margin:5px 0;
+}
+
+.greeting{
+    opacity:.8;
+}
+
+.subGreeting{
+    opacity:.7;
+}
+
+.headerRight{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.notificationBtn{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    border:none;
+    background:rgba(255,255,255,.18);
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.notificationBtn:hover{
+    background:white;
+    color:#2D6A4F;
+}
+
+.avatar{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#95D5B2,#52B788);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    font-size:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+
+
+.gestationCard{
+    background:linear-gradient(135deg,#1B4332 0%,#2D6A4F 50%,#40916C 100%);
+    border-radius:28px;
+    padding:35px;
+    color:white;
+    box-shadow:0 18px 40px rgba(45,106,79,.35);
+    overflow:hidden;
+    position:relative;
+}
+
+.gestationCard::before{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    right:-120px;
+    top:-120px;
+    border-radius:50%;
+    background:rgba(255,255,255,.05);
+}
+
+.gestationCard::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    left:-60px;
+    bottom:-80px;
+    border-radius:50%;
+    background:rgba(255,255,255,.04);
+}
+
+.statusBadge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 14px;
+    border-radius:40px;
+    background:rgba(255,255,255,.12);
+    font-size:.75rem;
+    letter-spacing:.08em;
+    margin-bottom:28px;
+}
+
+.liveDot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#34D399;
+    animation:pulse 1.5s infinite;
+}
+
+.gestationContent{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.cardLabel{
+    color:#D8F3DC;
+    font-size:1rem;
+}
+
+.weekNumber{
+    font-size:4rem;
+    margin:8px 0;
+    line-height:1;
+    font-weight:700;
+}
+
+.trimester{
+    color:rgba(255,255,255,.75);
+    font-size:.95rem;
+}
+
+.babySection{
+    text-align:center;
+}
+
+.babyIconBox{
+    width:110px;
+    height:110px;
+    border-radius:28px;
+    background:rgba(255,255,255,.12);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#D8F3DC;
+    margin:auto;
+    margin-bottom:12px;
+}
+
+.babySize{
+    font-size:.85rem;
+    color:rgba(255,255,255,.7);
+    line-height:1.4;
+}
+
+
+
+.progressSection{
+    margin-top:15px;
+}
+
+.progressHeader{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    font-size:.95rem;
+}
+
+.progressHeader strong{
+    color:#FFD166;
+}
+
+.progressBar{
+    width:100%;
+    height:14px;
+    background:rgba(255,255,255,.15);
+    border-radius:40px;
+    overflow:hidden;
+}
+
+.progressFill{
+    height:100%;
+    border-radius:40px;
+    background:#FFD166;
+}
+
+.progressFooter{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+    color:rgba(255,255,255,.6);
+    font-size:.82rem;
+}
+
+
+
+.gestationFooter{
+    margin-top:35px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.footerCard{
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(8px);
+    border-radius:18px;
+    padding:18px;
+}
+
+.footerCard h4{
+    margin-bottom:8px;
+    font-size:1rem;
+}
+
+.footerCard p{
+    color:rgba(255,255,255,.8);
+    line-height:1.6;
+    font-size:.9rem;
+}
+
+
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(.9);
+        opacity:.7;
+    }
+
+    50%{
+        transform:scale(1.3);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(.9);
+        opacity:.7;
+    }
+
+}
+
+
+.mamaBotCard{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    background:#fff;
+    border-radius:24px;
+    padding:24px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+    text-align:left;
+    transition:.3s;
+    box-shadow:0 8px 25px rgba(45,106,79,.08);
+    border:1px solid #E4EFE8;
+}
+
+.mamaBotCard:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 35px rgba(45,106,79,.15);
+}
+
+.botAvatar{
+    width:72px;
+    height:72px;
+    border-radius:22px;
+    background:linear-gradient(135deg,#D8F3DC,#B7E4C7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2rem;
+    flex-shrink:0;
+}
+
+.botContent{
+    flex:1;
+}
+
+.botHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+}
+
+.botHeader h3{
+    color:#2D6A4F;
+    font-size:1.35rem;
+}
+
+.onlineBadge{
+    background:#D8F3DC;
+    color:#2D6A4F;
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:.75rem;
+    font-weight:600;
+}
+
+.botMessage{
+    font-size:1.1rem;
+    color:#374151;
+    margin-bottom:8px;
+}
+
+.botHint{
+    color:#888;
+    font-size:.95rem;
+}
+
+
+
+.statsGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.statCard{
+    border-radius:22px;
+    padding:25px;
+    text-align:center;
+    transition:.3s;
+}
+
+.statCard:hover{
+    transform:translateY(-4px);
+}
+
+.statIcon{
+    width:62px;
+    height:62px;
+    margin:auto;
+    margin-bottom:15px;
+    border-radius:18px;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.statCard h4{
+    color:#555;
+    margin-bottom:10px;
+    font-size:1rem;
+}
+
+.statCard p{
+    font-size:1.15rem;
+    font-weight:700;
+    color:#2D3748;
+}
+
+
+
+.appointmentCard{
+    background:#FFF8EE;
+    border:2px solid #E9C46A;
+    border-radius:22px;
+    padding:25px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.appointmentIcon{
+    width:70px;
+    height:70px;
+    border-radius:18px;
+    background:#FDE68A;
+    color:#8A5A00;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-shrink:0;
+}
+
+.appointmentInfo span{
+    color:#9A6B00;
+    font-weight:700;
+    font-size:.9rem;
+    letter-spacing:.08em;
+}
+
+.appointmentInfo h3{
+    margin:8px 0;
+    color:#333;
+    font-size:1.35rem;
+}
+
+.appointmentInfo p{
+    color:#666;
+}
+
+
+
+.tipCard{
+    background:white;
+    border-radius:22px;
+    padding:24px;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.tipHeader{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#E63946;
+    margin-bottom:15px;
+}
+
+.tipHeader h3{
+    color:#333;
+}
+
+.tipCard p{
+    line-height:1.8;
+    color:#666;
+    font-size:1rem;
+}
+
+
+.fabContainer{
+    position:fixed;
+    right:40px;
+    bottom:35px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    z-index:50;
+}
+
+.chatFab{
+    width:70px;
+    height:70px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:2rem;
+    color:white;
+    background:linear-gradient(135deg,#40916C,#2D6A4F);
+    box-shadow:0 10px 25px rgba(45,106,79,.35);
+    transition:.25s;
+}
+
+.chatFab:hover{
+    transform:translateY(-4px) scale(1.05);
+}
+
+.emergencyFab{
+
+    width:82px;
+    height:82px;
+
+    border:none;
+    border-radius:50%;
+
+    cursor:pointer;
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,#E63946,#B00020);
+
+    box-shadow:0 12px 28px rgba(230,57,70,.35);
+
+    transition:.25s;
+
+}
+
+.emergencyFab:hover{
+
+    transform:scale(1.05);
+
+}
+
+.emergencyFab span{
+
+    font-size:.62rem;
+
+    letter-spacing:.08em;
+
+    margin-top:4px;
+
+    font-weight:600;
+
+}
+
+
+
+.emergencyOverlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(190,25,40,.95);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:1000;
+
+}
+
+.alertBox{
+
+    width:520px;
+
+    max-width:92%;
+
+    background:white;
+
+    border-radius:28px;
+
+    padding:45px;
+
+    text-align:center;
+
+    animation:popup .35s ease;
+
+}
+
+.alertBox svg{
+
+    background:#E63946;
+
+    padding:18px;
+
+    border-radius:50%;
+
+    margin-bottom:18px;
+
+}
+
+.alertBox h2{
+
+    color:#BE123C;
+
+    margin-bottom:12px;
+
+    font-size:2rem;
+
+}
+
+.alertBox p{
+
+    color:#666;
+
+    line-height:1.8;
+
+}
+
+.connecting{
+
+    margin:30px auto;
+
+    width:max-content;
+
+    padding:12px 20px;
+
+    border-radius:40px;
+
+    background:#F4F4F4;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:600;
+
+}
+
+.dot{
+
+    width:12px;
+
+    height:12px;
+
+    background:#2D6A4F;
+
+    border-radius:50%;
+
+    animation:pulseDot 1s infinite;
+
+}
+
+.closeAlert{
+
+    border:none;
+
+    background:#2D6A4F;
+
+    color:white;
+
+    padding:14px 34px;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    transition:.25s;
+
+}
+
+.closeAlert:hover{
+
+    background:#1B4332;
+
+}
+
+
+
+@keyframes popup{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px) scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+@keyframes pulseDot{
+
+    0%{
+
+        transform:scale(.8);
+
+        opacity:.5;
+
+    }
+
+    50%{
+
+        transform:scale(1.4);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:scale(.8);
+
+        opacity:.5;
+
+    }
+
+}
+
+
+@media(max-width:1100px){
+
+.statsGrid{
+
+grid-template-columns:1fr;
+
+}
+
+.gestationContent{
+
+flex-direction:column;
+
+gap:30px;
+
+text-align:center;
+
+}
+
+.gestationFooter{
+
+grid-template-columns:1fr;
+
+}
+
+.header{
+
+padding:30px;
+
+}
+
+.headerLeft h1{
+
+font-size:2.1rem;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.container{
+
+width:95%;
+
+}
+
+.header{
+
+padding:25px;
+
+flex-direction:column;
+
+gap:25px;
+
+text-align:center;
+
+}
+
+.headerRight{
+
+justify-content:center;
+
+}
+
+.weekNumber{
+
+font-size:3rem;
+
+}
+
+.botHeader{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:10px;
+
+}
+
+.appointmentCard{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.fabContainer{
+
+right:20px;
+
+bottom:20px;
+
+}
+
+.chatFab{
+
+width:60px;
+
+height:60px;
+
+font-size:1.7rem;
+
+}
+
+.emergencyFab{
+
+width:72px;
+
+height:72px;
+
+}
+
+}

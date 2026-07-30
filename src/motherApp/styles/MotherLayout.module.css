@@ -1,0 +1,16 @@
+.container{
+    min-height:100vh;
+    display:block;
+    background:#F8F7F2;
+    padding:0;
+}
+
+.phone{
+    width:100%;
+    min-height:100vh;
+    background:#faf6f0;
+    overflow:auto;
+    position:relative;
+    border-radius:0;
+    box-shadow:none;
+}
