@@ -1,15 +1,9 @@
-.main {
-  flex: 1;
-  padding: var(--space-margin-mobile);
-  background-color: var(--color-surface-bright);
+.page {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 56px);
-}
-
-@media (min-width: 1024px) {
-  .main { padding: var(--space-margin-desktop); }
+  min-height: calc(100vh - 136px);
+  padding: 24px;
 }
 
 .hero {
@@ -17,25 +11,18 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-md);
-  max-width: 480px;
+  gap: 16px;
+  max-width: 320px;
 }
 
-.title {
-  color: var(--color-on-surface);
-}
-
-.sub {
-  color: var(--color-on-surface-variant);
-}
+.title { color: var(--color-on-surface); }
+.sub   { color: var(--color-on-surface-variant); }
 
 .badge {
   display: inline-flex;
-  align-items: center;
   padding: 6px 20px;
   border-radius: var(--radius-full);
-  background-color: var(--color-primary-fixed);
+  background-color: var(--color-primary-container);
   color: var(--color-on-primary-fixed-variant);
-  font-size: 13px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }

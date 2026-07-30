@@ -1,0 +1,116 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px 16px 120px;
+}
+
+.header { display: flex; flex-direction: column; gap: 4px; }
+.title  { color: var(--color-on-surface); }
+.sub    { color: var(--color-on-surface-variant); }
+
+/* Tabs */
+.tabRow {
+  display: flex;
+  background-color: var(--color-surface-container-low);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  gap: 2px;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 4px;
+  border-radius: var(--radius-full);
+  color: var(--color-on-surface-variant);
+  font-size: 13px;
+  transition: background-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.tab:active { transform: scale(0.95); }
+
+.tabActive {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: 0 2px 8px rgba(69,97,78,0.25);
+}
+
+/* Plate section */
+.plateSection {
+  background-color: var(--color-surface-container-lowest);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  border: 1px solid var(--color-surface-container);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.plateSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.plateTitle { color: var(--color-primary); }
+
+.plateDesc {
+  color: var(--color-on-surface-variant);
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.plateWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+/* Ingredients */
+.ingredientsTitle {
+  color: var(--color-on-surface);
+  margin-bottom: 12px;
+}
+
+.ingredientsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Bot CTA */
+.botCta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--color-secondary-container);
+  border: 1px solid rgba(151,71,37,0.2);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: 0 4px 16px rgba(151,71,37,0.1);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.botCta:active { transform: scale(0.98); }
+
+.botCtaIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.botCtaText {
+  flex: 1;
+}
+
+.botCtaText .label-md { color: var(--color-on-surface); }
+.botCtaText .body-sm  { color: var(--color-on-surface-variant); }

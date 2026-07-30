@@ -1,16 +1,20 @@
 {
-  "name": "mamaafya-chatbot-integration",
-  "version": "1.0.0",
-  "description": "Integration layer wiring the MamaAfya Botpress chatbot to the Socket.IO dashboard, Africa's Talking USSD/SMS gateway, and the shared backend API.",
-  "main": "server.js",
+  "name": "mamaafya-nutrition",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "test": "node ../test/run_flow_test.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "socket.io": "^4.7.5",
-    "socket.io-client": "^4.7.5",
-    "axios": "^1.7.2"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^5.4.10"
   }
 }

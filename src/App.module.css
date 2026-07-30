@@ -1,26 +1,5 @@
-.layout {
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
-}
-
-.contentArea {
-  display: flex;
-  flex-direction: column;
+.main {
   flex: 1;
-  min-height: 100vh;
-}
-
-.contentAreaNoSidebar {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
-/* On desktop, push content right of sidebar */
-@media (min-width: 1024px) {
-  .contentArea { margin-left: 288px; }
+  padding-top: 56px; /* TopNav height */
+  background-color: var(--color-background);
 }
