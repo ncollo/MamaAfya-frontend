@@ -1,6 +1,9 @@
-import styles from './TopBar.module.css';
+import { useNavigate } from "react-router-dom";
+import styles from "./TopBar.module.css";
 
 export default function TopBar({ onMenuClick }) {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.topBar}>
       <div className={styles.left}>
