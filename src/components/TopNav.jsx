@@ -1,6 +1,10 @@
+import { useNavigate } from 'react-router-dom';
+import LanguageToggle from './LanguageToggle';
 import styles from './TopNav.module.css';
 
 export default function TopNav() {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.nav}>
       <div className={styles.left}>
@@ -9,10 +13,13 @@ export default function TopNav() {
         </div>
         <span className={`headline-sm ${styles.logo}`}>NurtureHome</span>
       </div>
-      <button className={styles.iconBtn} aria-label="Notifications">
-        <span className="material-symbols-outlined">notifications</span>
-        <span className={styles.badge} />
-      </button>
+      <div className={styles.actions}>
+        <LanguageToggle />
+        <button className={styles.iconBtn} type="button" aria-label="Notifications" onClick={() => navigate('/notifications')}>
+          <span className="material-symbols-outlined">notifications</span>
+          <span className={styles.badge} />
+        </button>
+      </div>
     </header>
   );
 }

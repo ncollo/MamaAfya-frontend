@@ -1,0 +1,132 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(202, 234, 210, 0.8), transparent 42%),
+    radial-gradient(circle at bottom right, rgba(255, 219, 206, 0.8), transparent 36%),
+    var(--color-background);
+}
+
+.shell {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero,
+.form {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-surface-container-high);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 18px 45px rgba(69, 97, 78, 0.10);
+}
+
+.hero {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.logoMark {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary-container);
+}
+
+.title { color: var(--color-on-surface); }
+.subtitle { color: var(--color-on-surface-variant); }
+
+.form {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionLabel,
+.fieldLabel {
+  color: var(--color-on-surface-variant);
+}
+
+.roleGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.roleCard {
+  text-align: left;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-surface-container-high);
+  background-color: var(--color-surface-container-lowest);
+}
+
+.roleCardActive {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-container);
+}
+
+.roleTitle { color: var(--color-on-surface); display: block; margin-bottom: 4px; }
+.roleBody { color: var(--color-on-surface-variant); }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-outline-variant);
+  background-color: var(--color-surface-container-lowest);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: 2px solid rgba(69, 97, 78, 0.22);
+  border-color: var(--color-primary);
+}
+
+.error {
+  color: var(--color-error);
+  font-size: 14px;
+}
+
+.submit {
+  margin-top: 4px;
+  padding: 14px 18px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}

@@ -39,7 +39,7 @@ export default function Home() {
       </section>
 
       {/* AskMamaBot banner */}
-      <button className={styles.botBanner} onClick={() => navigate('/community')}>
+      <button className={styles.botBanner} onClick={() => navigate('/chat')}>
         <div className={styles.botIcon}>
           <span className="material-symbols-outlined fill">smart_toy</span>
         </div>

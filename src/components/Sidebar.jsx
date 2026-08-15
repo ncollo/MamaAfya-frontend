@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAppState } from "../context/AppStateContext";
 import styles from "./Sidebar.module.css";
 
 const chwItems = [
@@ -16,6 +17,14 @@ const motherItems = [
 ];
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+  const { logout } = useAppState();
+
+  const handleSignOut = () => {
+    logout();
+    navigate('/login', { replace: true });
+  };
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarHeader}>
@@ -60,10 +69,10 @@ export default function Sidebar() {
       </nav>
 
       <div className={styles.sidebarFooter}>
-        <a href="#" className={styles.navItem} onClick={e => e.preventDefault()}>
+        <button type="button" className={styles.navItem} onClick={handleSignOut}>
           <span className="material-symbols-outlined">logout</span>
           <span className="label-md">Sign Out</span>
-        </a>
+        </button>
       </div>
     </aside>
   );

@@ -1,44 +1,33 @@
-import { useState } from "react";
-import { Mic, MicOff, Send } from "lucide-react";
-import styles from "../../styles/MamaBot.module.css";
+import { useState } from 'react';
+import { Send } from 'lucide-react';
+import { useAppState } from '../../../context/AppStateContext';
+import styles from '../../styles/MamaBot.module.css';
 
 export default function MessageInput({ onSend }) {
-  const [message, setMessage] = useState("");
-  const [listening, setListening] = useState(false);
+  const [message, setMessage] = useState('');
+  const { language } = useAppState();
 
   const handleSend = () => {
     if (!message.trim()) return;
 
     onSend(message);
-    setMessage("");
+    setMessage('');
   };
 
   return (
     <div className={styles.inputSection}>
-
       <div className={styles.inputContainer}>
-
-        <button
-          className={`${styles.micButton} ${
-            listening ? styles.micActive : ""
-          }`}
-          onClick={() => setListening(!listening)}
-        >
-          {listening ? (
-            <MicOff size={18} />
-          ) : (
-            <Mic size={18} />
-          )}
-        </button>
-
-        <input
-          type="text"
-          placeholder="Type in English or Swahili..."
+        <textarea
+          rows={2}
+          placeholder={language === 'sw' ? 'Andika kwa Kiswahili au Kiingereza...' : 'Type in English or Swahili...'}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) =>
-            e.key === "Enter" && handleSend()
-          }
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault();
+              handleSend();
+            }
+          }}
           className={styles.messageInput}
         />
 
@@ -49,15 +38,7 @@ export default function MessageInput({ onSend }) {
         >
           <Send size={18} />
         </button>
-
       </div>
-
-      {listening && (
-        <p className={styles.listeningText}>
-          🎙 Listening... Speak in English or Swahili
-        </p>
-      )}
-
     </div>
   );
 }

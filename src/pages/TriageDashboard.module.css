@@ -4,6 +4,46 @@
   background-color: var(--color-surface-bright);
 }
 
+.assignmentBanner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary-container);
+  border: 1px solid rgba(69, 97, 78, 0.12);
+  box-shadow: 0 6px 16px rgba(69, 97, 78, 0.08);
+  margin-bottom: var(--space-lg);
+}
+
+.assignmentLabel,
+.assignmentTitle,
+.assignmentSub {
+  color: var(--color-on-surface);
+}
+
+.assignmentSub {
+  color: var(--color-on-surface-variant);
+}
+
+.assignmentMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.assignmentChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-container-lowest);
+  color: var(--color-on-surface);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 @media (min-width: 1024px) {
   .main { padding: var(--space-margin-desktop); }
 }

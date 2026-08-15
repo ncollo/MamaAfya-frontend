@@ -1,5 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
 import TopBar from "./components/TopBar";
@@ -16,10 +15,14 @@ import Guide from "./pages/Guide";
 import Weekly from "./pages/Weekly";
 import Community from "./pages/Community";
 import Profile from "./pages/Profile";
+import Notifications from "./pages/Notifications";
+import Login from "./pages/Login";
 
 import MotherDashboard from "./motherApp/pages/MotherDashboard";
 import MamaBot from "./motherApp/pages/MamaBot";
 import NutritionGuide from "./motherApp/pages/NutritionGuide";
+import { AppStateProvider } from "./context/AppStateContext";
+import { HomeRedirect, RequireAuth } from "./components/PortalShell";
 
 import styles from "./App.module.css";
 
@@ -52,6 +55,7 @@ function MotherLayout() {
           <Route path="weekly" element={<Weekly />} />
           <Route path="community" element={<Community />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="notifications" element={<Notifications />} />
           <Route path="home" element={<MotherDashboard />} />
           <Route path="chat" element={<MamaBot />} />
           <Route path="nutrition" element={<NutritionGuide />} />
@@ -65,11 +69,29 @@ function MotherLayout() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/chw/*" element={<CHWLayout />} />
-        <Route path="/mother/*" element={<MotherLayout />} />
-        <Route path="/*" element={<MotherLayout />} />
-      </Routes>
+      <AppStateProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<HomeRedirect />} />
+          <Route
+            path="/chw/*"
+            element={
+              <RequireAuth allowedRoles={["chw"]}>
+                <CHWLayout />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/*"
+            element={
+              <RequireAuth allowedRoles={["mother"]}>
+                <MotherLayout />
+              </RequireAuth>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </AppStateProvider>
     </BrowserRouter>
   );
 }

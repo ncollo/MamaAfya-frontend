@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { dailyMeals } from '../data/nutrition';
 import PlateChart from '../components/PlateChart';
 import IngredientCard from '../components/IngredientCard';
@@ -8,6 +9,7 @@ const mealKeys = ['breakfast', 'lunch', 'dinner'];
 
 export default function Guide() {
   const [activeMeal, setActiveMeal] = useState('breakfast');
+  const navigate = useNavigate();
   const meal = dailyMeals[activeMeal];
 
   return (
@@ -60,7 +62,7 @@ export default function Guide() {
       </section>
 
       {/* MamaBot CTA */}
-      <div className={styles.botCta}>
+      <button className={styles.botCta} type="button" onClick={() => navigate('/chat')}>
         <div className={styles.botCtaIcon}>
           <span className="material-symbols-outlined fill">smart_toy</span>
         </div>
@@ -69,7 +71,7 @@ export default function Guide() {
           <p className="body-sm">For local recipes using these ingredients</p>
         </div>
         <span className="material-symbols-outlined" style={{ color: 'var(--color-secondary)', opacity: 0.7 }}>chevron_right</span>
-      </div>
+      </button>
     </div>
   );
 }

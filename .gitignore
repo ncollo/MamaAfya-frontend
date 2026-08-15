@@ -1,6 +1,11 @@
-git pull origin main --allow-unrelated-histories
-Logs
-logs
+# Dependency directories
+node_modules/
+dist/
+dist-ssr/
+coverage/
+
+# Logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -8,18 +13,28 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Environment files
+.env
+.env.*
+!.env.example
 
-# Editor directories and files
-.vscode/*
+# Local runtime and editor files
+*.local
+.vscode/
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# OS or build artifacts
+Thumbs.db
+
+# Optional package manager lockfiles
+# Keep package-lock.json tracked if you want reproducible installs.
+# Remove the next lines only if you intentionally do not want them in git.
+# yarn.lock
+# pnpm-lock.yaml

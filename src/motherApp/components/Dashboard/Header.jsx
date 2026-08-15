@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { Bell } from "lucide-react";
+import { useAppState } from "../../../context/AppStateContext";
 import styles from "../../styles/MotherDashboard.module.css";
 
 export default function Header() {
+  const navigate = useNavigate();
+  const { user } = useAppState();
+  const displayName = user?.fullName || "Amina Wanjiru";
+
   return (
     <header className={styles.header}>
 
@@ -12,18 +18,18 @@ export default function Header() {
         </p>
 
         <h1>
-          Amina Wanjiru
+          {displayName}
         </h1>
 
         <p className={styles.subGreeting}>
-          Mama mtarajiwa • Expected Mother
+          {user?.role === 'chw' ? 'CHW Portal' : 'Mama mtarajiwa • Expected Mother'}
         </p>
 
       </div>
 
       <div className={styles.headerRight}>
 
-        <button className={styles.notificationBtn}>
+        <button className={styles.notificationBtn} type="button" onClick={() => navigate('/notifications')}>
 
           <Bell size={22} />
 

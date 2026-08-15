@@ -40,6 +40,10 @@
   gap: var(--space-sm);
 }
 
+.right :global(.toggle) {
+  flex-shrink: 0;
+}
+
 .iconBtn {
   position: relative;
   display: flex;

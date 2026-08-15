@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import LanguageToggle from "./LanguageToggle";
 import styles from "./TopBar.module.css";
 
 export default function TopBar({ onMenuClick }) {
@@ -9,7 +10,7 @@ export default function TopBar({ onMenuClick }) {
       <div className={styles.left}>
         <button
           className={styles.menuBtn}
-          onClick={onMenuClick}
+          onClick={onMenuClick || (() => navigate('/chw/'))}
           aria-label="Open navigation"
         >
           <span className="material-symbols-outlined">menu</span>
@@ -18,7 +19,8 @@ export default function TopBar({ onMenuClick }) {
       </div>
 
       <div className={styles.right}>
-        <button className={styles.iconBtn} aria-label="Notifications">
+        <LanguageToggle />
+        <button className={styles.iconBtn} type="button" aria-label="Notifications" onClick={() => navigate('/chw/reports')}>
           <span className="material-symbols-outlined">notifications</span>
           <span className={styles.badge} />
         </button>

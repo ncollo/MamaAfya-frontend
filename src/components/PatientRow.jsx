@@ -1,4 +1,5 @@
 import styles from './PatientRow.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const riskConfig = {
   high: {
@@ -32,6 +33,20 @@ const riskConfig = {
 
 export default function PatientRow({ patient }) {
   const cfg = riskConfig[patient.riskLevel];
+  const navigate = useNavigate();
+
+  const handlePrimaryAction = () => {
+    if (cfg.actionLabel === 'Send Reminder') {
+      navigate('/chw/schedule');
+      return;
+    }
+
+    navigate('/chw/reports');
+  };
+
+  const handleMoreAction = () => {
+    navigate('/chw/patients');
+  };
 
   return (
     <div className={`${styles.row} ${styles[cfg.rowClass]}`}>
@@ -72,11 +87,11 @@ export default function PatientRow({ patient }) {
 
       {/* Actions */}
       <div className={styles.actions}>
-        <button className={`${styles.actionBtn} ${styles[cfg.actionClass]}`}>
+        <button className={`${styles.actionBtn} ${styles[cfg.actionClass]}`} onClick={handlePrimaryAction}>
           <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{patient.actionIcon || cfg.actionIcon}</span>
           {cfg.actionLabel}
         </button>
-        <button className={styles.moreBtn} aria-label="More options">
+        <button className={styles.moreBtn} aria-label="More options" onClick={handleMoreAction}>
           <span className="material-symbols-outlined">more_vert</span>
         </button>
       </div>

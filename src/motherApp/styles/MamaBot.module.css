@@ -30,6 +30,30 @@
 
 }
 
+.quickReplies {
+
+    display:flex;
+
+    gap:10px;
+
+    overflow-x:auto;
+
+    padding:18px 22px;
+
+    background:white;
+
+    border-top:1px solid #ECECEC;
+
+    scrollbar-width:none;
+
+}
+
+.quickReplies::-webkit-scrollbar{
+
+    display:none;
+
+}
+
 
 
 .header{
@@ -99,38 +123,6 @@
     opacity:.8;
 
     font-size:.9rem;
-
-}
-
-.languageBadge{
-
-    background:#52B788;
-
-    padding:7px 14px;
-
-    border-radius:30px;
-
-    font-size:.75rem;
-
-    font-weight:600;
-
-}
-
-.headerMic{
-
-    border:none;
-
-    background:rgba(255,255,255,.15);
-
-    color:white;
-
-    width:42px;
-
-    height:42px;
-
-    border-radius:50%;
-
-    cursor:pointer;
 
 }
 
@@ -388,30 +380,6 @@
 }
 
 
-.quickReplies{
-
-    display:flex;
-
-    gap:10px;
-
-    overflow-x:auto;
-
-    padding:18px 22px;
-
-    background:white;
-
-    border-top:1px solid #ECECEC;
-
-    scrollbar-width:none;
-
-}
-
-.quickReplies::-webkit-scrollbar{
-
-    display:none;
-
-}
-
 .quickReplyChip{
 
     border:none;
@@ -513,9 +481,15 @@
 
     background:white;
 
-    padding:20px;
+    padding:18px 20px 20px;
 
     border-top:1px solid #ECECEC;
+
+    position:sticky;
+
+    bottom:0;
+
+    z-index:2;
 
 }
 
@@ -523,17 +497,19 @@
 
     display:flex;
 
-    align-items:center;
+    align-items:flex-end;
 
     gap:12px;
 
-    border:2px solid #E5E7EB;
+    padding:12px;
+
+    border:1px solid #D7E0D8;
 
     border-radius:20px;
 
-    padding:10px;
+    background:#F8FAF8;
 
-    background:#F9FAFB;
+    box-shadow:0 6px 18px rgba(27,67,50,.06);
 
 }
 
@@ -541,99 +517,59 @@
 
     flex:1;
 
-    border:none;
+    min-height:52px;
 
-    outline:none;
+    resize:none;
+
+    border:none;
 
     background:transparent;
 
-    font-size:1rem;
+    font:inherit;
 
-    color:#374151;
+    color:#1E293B;
 
-}
+    outline:none;
 
-.micButton{
-
-    width:44px;
-
-    height:44px;
-
-    border:none;
-
-    border-radius:50%;
-
-    cursor:pointer;
-
-    background:#D8F3DC;
-
-    color:#2D6A4F;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    transition:.25s;
+    line-height:1.5;
 
 }
 
-.micActive{
+.messageInput::placeholder{
 
-    background:#E63946;
-
-    color:white;
+    color:#64748B;
 
 }
 
 .sendButton{
 
-    width:44px;
+    width:46px;
 
-    height:44px;
-
-    border:none;
+    height:46px;
 
     border-radius:50%;
 
-    cursor:pointer;
-
-    background:linear-gradient(135deg,#40916C,#2D6A4F);
+    background:#2D6A4F;
 
     color:white;
 
     display:flex;
 
-    justify-content:center;
-
     align-items:center;
 
-    transition:.25s;
+    justify-content:center;
+
+    flex-shrink:0;
 
 }
 
 .sendButton:disabled{
 
-    background:#D1D5DB;
+    opacity:.45;
 
     cursor:not-allowed;
 
 }
-
-.listeningText{
-
-    text-align:center;
-
-    color:#E63946;
-
-    margin-top:10px;
-
-    font-size:.85rem;
-
-}
-
-
 
 @media(max-width:768px){
 

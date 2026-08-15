@@ -1,0 +1,26 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: transform 0.1s, background-color 0.15s;
+}
+
+.toggle:active {
+  transform: scale(0.96);
+}
+
+.active {
+  color: var(--color-primary);
+}
+
+.separator {
+  color: var(--color-outline);
+}
