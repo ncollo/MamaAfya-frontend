@@ -86,12 +86,6 @@ MamaAfya-frontend/
 └── server.js
 ```
 
-## Security notes
-
-- Do not commit any real API keys, tokens, or secret values.
-- Never store secrets in source files or in the repo history.
-- Use `.env` for local-only configuration and keep `.env` out of Git.
-- If you need to share configuration with teammates, share the `.env.example` template instead of the real values.
 
 ## Common troubleshooting
 
