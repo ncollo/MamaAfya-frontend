@@ -9,10 +9,7 @@ export function RequireAuth({ allowedRoles, children }) {
     return <Navigate to="/login" replace state={{ from: location.pathname }} />;
   }
 
-  if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to={user.role === 'chw' ? '/chw/' : '/home'} replace />;
-  }
-
+  // During symposium presentation, allow seamless demonstration of all 4 doors
   return children;
 }
 
@@ -23,5 +20,8 @@ export function HomeRedirect() {
     return <Navigate to="/login" replace />;
   }
 
-  return <Navigate to={user.role === 'chw' ? '/chw/' : '/home'} replace />;
+  if (user.role === 'chw') return <Navigate to="/chw/" replace />;
+  if (user.role === 'facility_staff') return <Navigate to="/facility/" replace />;
+  if (user.role === 'partner') return <Navigate to="/partner/" replace />;
+  return <Navigate to="/home" replace />;
 }

@@ -3,22 +3,22 @@ import { useAppState } from "../context/AppStateContext";
 import styles from "./Sidebar.module.css";
 
 const chwItems = [
-  { icon: "dashboard",     label: "Dashboard", to: "/chw/" },
-  { icon: "person_search", label: "Patients",  to: "/chw/patients" },
-  { icon: "event",         label: "Schedule",  to: "/chw/schedule" },
-  { icon: "inventory_2",   label: "Inventory", to: "/chw/inventory" },
-  { icon: "analytics",     label: "Reports",   to: "/chw/reports" },
+  { icon: "dashboard",     label: "Triage Dashboard", to: "/chw/" },
+  { icon: "person_search", label: "Assigned Patients", to: "/chw/patients" },
+  { icon: "event",         label: "Schedule Visits",  to: "/chw/schedule" },
+  { icon: "inventory_2",   label: "Medical Kits",     to: "/chw/inventory" },
+  { icon: "analytics",     label: "Clinical Reports", to: "/chw/reports" },
 ];
 
-const motherItems = [
-  { icon: "home",      label: "Mother Home", to: "/mother/home" },
-  { icon: "smart_toy", label: "MamaBot",     to: "/mother/chat" },
-  { icon: "nutrition", label: "Nutrition",   to: "/mother/nutrition" },
+const doorItems = [
+  { icon: "smartphone",   label: "Door 1: Mother PWA", to: "/home" },
+  { icon: "local_hospital", label: "Door 3: Facility", to: "/facility" },
+  { icon: "diversity_1",  label: "Door 4: Partner",    to: "/partner" },
 ];
 
 export default function Sidebar() {
   const navigate = useNavigate();
-  const { logout } = useAppState();
+  const { user, logout } = useAppState();
 
   const handleSignOut = () => {
     logout();
@@ -29,16 +29,16 @@ export default function Sidebar() {
     <aside className={styles.sidebar}>
       <div className={styles.sidebarHeader}>
         <div className={styles.avatar}>
-          <span className="material-symbols-outlined">account_circle</span>
+          <span className="material-symbols-outlined" style={{ color: '#0D9488' }}>medical_services</span>
         </div>
         <div>
-          <p className={`headline-sm ${styles.portalTitle}`}>CHW Portal</p>
-          <p className={`label-md ${styles.portalSub}`}>Community Health Worker</p>
+          <p className={`headline-sm ${styles.portalTitle}`} style={{ fontWeight: 800 }}>MamaAfya</p>
+          <p className={`label-md ${styles.portalSub}`}>CHW Dashboard</p>
         </div>
       </div>
 
       <nav className={styles.nav}>
-        <p className={`label-sm ${styles.sectionLabel}`}>CHW Dashboard</p>
+        <p className={`label-sm ${styles.sectionLabel}`}>Triage & Field Operations</p>
         {chwItems.map(item => (
           <NavLink
             key={item.label}
@@ -53,8 +53,8 @@ export default function Sidebar() {
           </NavLink>
         ))}
 
-        <p className={`label-sm ${styles.sectionLabel}`} style={{ marginTop: 16 }}>Mother Portal</p>
-        {motherItems.map(item => (
+        <p className={`label-sm ${styles.sectionLabel}`} style={{ marginTop: 20 }}>The Four Doors</p>
+        {doorItems.map(item => (
           <NavLink
             key={item.label}
             to={item.to}
@@ -69,9 +69,17 @@ export default function Sidebar() {
       </nav>
 
       <div className={styles.sidebarFooter}>
-        <button type="button" className={styles.navItem} onClick={handleSignOut}>
+        <div className={styles.chwBadge}>
+          <p className="label-md" style={{ color: "#0F172A", fontWeight: 700 }}>
+            {user?.full_name || user?.fullName || "Jane Mutua"}
+          </p>
+          <p className="body-sm" style={{ color: "#64748B" }}>
+            {user?.location || "Mathare Health Centre"}
+          </p>
+        </div>
+        <button className={styles.signOutBtn} onClick={handleSignOut} aria-label="Sign out">
           <span className="material-symbols-outlined">logout</span>
-          <span className="label-md">Sign Out</span>
+          <span className="label-md">Sign Out / Switch</span>
         </button>
       </div>
     </aside>
