@@ -1,98 +1,107 @@
-import styles from './PatientRow.module.css';
 import { useNavigate } from 'react-router-dom';
+import { AlertTriangle, AlertCircle, CheckCircle, UserCheck, Phone, ChevronRight } from 'lucide-react';
+import { getRiskMeta, PROXY_ENTRY } from '../shared/riskLabels';
+import { useAppState } from '../context/AppStateContext';
+import styles from './PatientRow.module.css';
 
-const riskConfig = {
-  high: {
-    rowClass: 'rowHigh',
-    nameClass: 'nameHigh',
-    symptomClass: 'symptomHigh',
-    badgeClass: 'badgeHigh',
-    actionLabel: 'View Transcript',
-    actionIcon: 'forum',
-    actionClass: 'actionSecondary',
-  },
-  medium: {
-    rowClass: 'rowMedium',
-    nameClass: 'nameMedium',
-    symptomClass: 'symptomMedium',
-    badgeClass: 'badgeNeutral',
-    actionLabel: 'Review',
-    actionIcon: 'visibility',
-    actionClass: 'actionPrimary',
-  },
-  low: {
-    rowClass: 'rowLow',
-    nameClass: 'nameLow',
-    symptomClass: 'symptomLow',
-    badgeClass: 'badgeNeutral',
-    actionLabel: 'Send Reminder',
-    actionIcon: 'send',
-    actionClass: 'actionPrimary',
-  },
-};
-
-export default function PatientRow({ patient }) {
-  const cfg = riskConfig[patient.riskLevel];
+export default function PatientRow({ patient, isNewAlert = false, onSelectPatient }) {
   const navigate = useNavigate();
+  const { language } = useAppState();
 
-  const handlePrimaryAction = () => {
-    if (cfg.actionLabel === 'Send Reminder') {
-      navigate('/chw/schedule');
-      return;
+  const riskMeta = getRiskMeta(patient.riskLevel || patient.status || patient.risk_level);
+  const isProxy = patient.source === 'chw_proxy' || patient.isProxy;
+
+  const riskLabel = language === 'sw' ? riskMeta.sw : riskMeta.en;
+  const proxyLabel = language === 'sw' ? PROXY_ENTRY.sw : PROXY_ENTRY.en;
+
+  const renderRiskIcon = () => {
+    if (riskMeta.key === 'high') {
+      return <AlertTriangle size={18} color="var(--risk-high, #DC2626)" />;
     }
-
-    navigate('/chw/reports');
+    if (riskMeta.key === 'medium') {
+      return <AlertCircle size={18} color="var(--risk-medium, #D97706)" />;
+    }
+    return <CheckCircle size={18} color="var(--risk-routine, #16A34A)" />;
   };
 
-  const handleMoreAction = () => {
-    navigate('/chw/patients');
-  };
+  const gestationalText = patient.week || (patient.gestationalWeek ? `Week ${patient.gestationalWeek}` : 'Active Patient');
 
   return (
-    <div className={`${styles.row} ${styles[cfg.rowClass]}`}>
-      {/* Core info grid */}
-      <div className={styles.infoGrid}>
-        {/* Name */}
-        <div className={styles.cell}>
-          <p className={`label-sm ${styles.colHeader}`}>Mother&apos;s Name</p>
-          <p className={`headline-sm ${styles[cfg.nameClass]}`}>{patient.name}</p>
+    <div
+      className={`${styles.row} ${styles[`row_${riskMeta.key}`]} ${isNewAlert ? styles.rowNewAlert : ''}`}
+      role="article"
+      aria-label={`${patient.name || patient.patient_name} - ${riskLabel}`}
+    >
+      {/* 1. Recognition Over Recall: Leftmost Risk Badge */}
+      <div className={styles.riskBadgeCol}>
+        <div
+          className={styles.riskBadge}
+          style={{
+            backgroundColor: riskMeta.bgColor,
+            borderColor: riskMeta.borderColor,
+            color: riskMeta.textColor,
+          }}
+          title={riskLabel}
+        >
+          {renderRiskIcon()}
+          <span className={styles.riskBadgeText}>{riskLabel}</span>
         </div>
 
-        {/* Gestational week */}
-        <div className={styles.cell}>
-          <p className={`label-sm ${styles.colHeader}`}>Gestational Week</p>
-          <p className="body-md" style={{ color: 'var(--color-on-surface)', fontWeight: 500 }}>
-            Week {patient.gestationalWeek}
-          </p>
-        </div>
-
-        {/* Symptom */}
-        <div className={styles.cell}>
-          <p className={`label-sm ${styles.colHeader}`}>Primary Symptom</p>
-          <p className={`body-md ${styles[cfg.symptomClass]}`} style={{ display: 'flex', alignItems: 'center', gap: 4, fontWeight: 500 }}>
-            <span className="material-symbols-outlined" style={{ fontSize: 16 }}>{patient.symptomIcon}</span>
-            {patient.symptom}
-          </p>
-        </div>
-
-        {/* Alert source */}
-        <div className={styles.cell}>
-          <p className={`label-sm ${styles.colHeader}`}>Alert Source</p>
-          <span className={`label-md ${styles.badge} ${styles[cfg.badgeClass]}`}>
-            <span className="material-symbols-outlined" style={{ fontSize: 14 }}>{patient.alertSourceIcon}</span>
-            {patient.alertSource}
+        {/* Proxy entry visual attribution */}
+        {isProxy && (
+          <span className={styles.proxyBadge} title={proxyLabel}>
+            <UserCheck size={12} />
+            {proxyLabel}
           </span>
-        </div>
+        )}
       </div>
 
-      {/* Actions */}
-      <div className={styles.actions}>
-        <button className={`${styles.actionBtn} ${styles[cfg.actionClass]}`} onClick={handlePrimaryAction}>
-          <span className="material-symbols-outlined" style={{ fontSize: 18 }}>{patient.actionIcon || cfg.actionIcon}</span>
-          {cfg.actionLabel}
-        </button>
-        <button className={styles.moreBtn} aria-label="More options" onClick={handleMoreAction}>
-          <span className="material-symbols-outlined">more_vert</span>
+      {/* 2. Patient Demographics & Stage */}
+      <div className={styles.patientInfoCol}>
+        <div className={styles.nameRow}>
+          <h4 className={styles.patientName}>{patient.name || patient.patient_name || 'Patient'}</h4>
+          <span className={styles.weekPill}>{gestationalText}</span>
+        </div>
+
+        <p className={styles.symptomText}>
+          <strong>{language === 'sw' ? 'Dalili:' : 'Reported:'} </strong>
+          {Array.isArray(patient.symptoms)
+            ? patient.symptoms.join(', ')
+            : patient.symptom || (patient.symptoms ? String(patient.symptoms) : 'Routine pregnancy check-in')}
+        </p>
+
+        {patient.triage_notes && (
+          <p className={styles.triageNote}>
+            "{patient.triage_notes}"
+          </p>
+        )}
+      </div>
+
+      {/* 3. Fast Triaging Action Buttons */}
+      <div className={styles.actionsCol}>
+        {patient.phone && (
+          <a
+            href={`tel:${patient.phone}`}
+            className={styles.callBtn}
+            title={language === 'sw' ? 'Piga simu' : 'Call patient'}
+            aria-label="Call patient"
+          >
+            <Phone size={15} />
+          </a>
+        )}
+
+        <button
+          className={styles.reviewBtn}
+          onClick={() => {
+            if (onSelectPatient) {
+              onSelectPatient(patient);
+            } else {
+              navigate('/chw/patients');
+            }
+          }}
+        >
+          <span>{language === 'sw' ? 'Fuatilia' : 'Review'}</span>
+          <ChevronRight size={16} />
         </button>
       </div>
     </div>

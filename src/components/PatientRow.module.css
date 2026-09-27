@@ -1,148 +1,204 @@
 .row {
-  border-radius: var(--radius);
-  padding: var(--space-sm) var(--space-md);
+  display: grid;
+  grid-template-columns: 190px 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--color-surface, #FFFFFF);
+  border: 1px solid var(--color-border, #E2E8F0);
+  border-radius: var(--radius-lg, 12px);
+  margin-bottom: 0.75rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.row:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  border-color: var(--color-border-strong, #CBD5E1);
+}
+
+/* Specific left border accents representing risk */
+.row_high {
+  border-left: 6px solid var(--risk-high, #DC2626);
+  background: linear-gradient(90deg, #FFF5F5 0%, #FFFFFF 160px);
+}
+
+.row_medium {
+  border-left: 6px solid var(--risk-medium, #D97706);
+  background: linear-gradient(90deg, #FFFDF5 0%, #FFFFFF 160px);
+}
+
+.row_routine {
+  border-left: 6px solid var(--risk-routine, #16A34A);
+}
+
+/* Restrained highlight animation for newly arrived WebSocket alerts */
+.rowNewAlert {
+  animation: restrainedAlertPulse 2.8s ease-in-out 3;
+}
+
+@keyframes restrainedAlertPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+    background-color: #FEF2F2;
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(220, 38, 38, 0);
+    background-color: #FEE2E2;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+    background-color: #FFF5F5;
+  }
+}
+
+/* Leftmost Risk Badge Column */
+.riskBadgeCol {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  transition: background-color 0.15s;
-  border: 1px solid transparent;
-  border-left-width: 6px;
+  gap: 6px;
+  align-items: flex-start;
 }
 
-/* Risk levels */
-.rowHigh {
-  background-color: rgba(255, 218, 214, 0.2);
-  border-color: rgba(186, 26, 26, 0.1);
-  border-left-color: var(--color-error);
-  box-shadow: 0 2px 8px rgba(186, 26, 26, 0.05);
-}
-.rowHigh:hover { background-color: rgba(255, 218, 214, 0.35); }
-
-.rowMedium {
-  background-color: var(--color-surface-container-lowest);
-  border-color: var(--color-surface-variant);
-  border-left-color: var(--color-tertiary-container);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
-.rowMedium:hover { background-color: var(--color-surface-container-low); }
-
-.rowLow {
-  background-color: var(--color-surface-container-lowest);
-  border-color: var(--color-surface-variant);
-  border-left-color: var(--color-primary-container);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  opacity: 0.9;
-}
-.rowLow:hover { background-color: var(--color-surface-container-low); opacity: 1; }
-
-/* Info grid */
-.infoGrid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-sm);
+.riskBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  border: 1px solid;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
-.cell {}
-
-.colHeader {
-  color: var(--color-on-surface-variant);
-  margin-bottom: var(--space-xs);
+.riskBadgeText {
+  font-weight: 700;
 }
 
-/* Name colours */
-.nameHigh   { color: var(--color-on-error-container); }
-.nameMedium { color: var(--color-on-surface); }
-.nameLow    { color: var(--color-on-surface); }
-
-/* Symptom colours */
-.symptomHigh   { color: var(--color-error); }
-.symptomMedium { color: #8c7300; }
-.symptomLow    { color: var(--color-primary); }
-
-/* Badges */
-.badge {
+.proxyBadge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 4px 10px;
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-}
-
-.badgeHigh {
-  background-color: var(--color-error);
-  color: var(--color-on-error);
-}
-
-.badgeNeutral {
-  background-color: var(--color-surface-container-highest);
-  color: var(--color-on-surface);
-  border: 1px solid rgba(194, 200, 193, 0.3);
-}
-
-/* Actions */
-.actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--space-sm);
-  padding-top: var(--space-sm);
-  border-top: 1px solid var(--color-surface-variant);
-}
-
-.actionBtn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: var(--radius-full);
-  font-family: var(--font-heading);
-  font-size: 14px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background-color: var(--proxy-badge-bg, #F1F5F9);
+  border: 1px solid var(--proxy-badge-border, #CBD5E1);
+  color: var(--proxy-badge-text, #334155);
+  font-size: 0.72rem;
   font-weight: 600;
-  transition: background-color 0.15s, transform 0.1s;
 }
 
-.actionBtn:active { transform: scale(0.96); }
-
-.actionPrimary {
-  color: var(--color-primary);
-  background-color: transparent;
-}
-.actionPrimary:hover { background-color: var(--color-surface-container); }
-
-.actionSecondary {
-  color: var(--color-secondary);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-secondary);
-}
-.actionSecondary:hover { background-color: rgba(151, 71, 37, 0.06); }
-
-.moreBtn {
+/* Patient Info Column */
+.patientInfoCol {
   display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.patientName {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #0F172A);
+  margin: 0;
+}
+
+.weekPill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+  background-color: #F1F5F9;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.symptomText {
+  font-size: 0.875rem;
+  color: #334155;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.triageNote {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: #64748B;
+  margin: 2px 0 0;
+}
+
+/* Action Buttons Column */
+.actionsCol {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.callBtn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-full);
-  color: var(--color-on-surface-variant);
-  transition: background-color 0.15s;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: #F1F5F9;
+  color: var(--color-primary, #0D9488);
+  border: 1px solid var(--color-border, #E2E8F0);
+  transition: all 0.15s ease;
+  text-decoration: none;
 }
-.moreBtn:hover { background-color: var(--color-surface-container); }
 
-/* Desktop layout: row → flex row */
-@media (min-width: 1024px) {
-  .row { flex-direction: row; align-items: center; }
+.callBtn:hover {
+  background-color: var(--color-primary-subtle, #CCFBF1);
+  border-color: var(--color-primary, #0D9488);
+}
 
-  .infoGrid {
-    grid-template-columns: repeat(4, 1fr);
+.reviewBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background-color: var(--color-surface-subtle, #F8FAFC);
+  border: 1px solid var(--color-border, #CBD5E1);
+  color: #0F172A;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.reviewBtn:hover {
+  background-color: var(--color-primary, #0D9488);
+  color: #FFFFFF;
+  border-color: var(--color-primary, #0D9488);
+}
+
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1rem;
   }
-
-  .actions {
-    padding-top: 0;
-    padding-left: var(--space-md);
-    border-top: none;
-    border-left: 1px solid var(--color-surface-variant);
-    flex-shrink: 0;
+  .riskBadgeCol {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .actionsCol {
+    justify-content: flex-end;
+    width: 100%;
+    border-top: 1px solid #F1F5F9;
+    padding-top: 0.5rem;
   }
 }
