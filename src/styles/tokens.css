@@ -1,0 +1,119 @@
+/* ==========================================================================
+   MamaAfya Design System Tokens
+   East African Maternal Healthcare - Shared across all Four Doors
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. Brand & Action Accent (Deep Ocean Teal)
+     Deliberately distinct from Red/Amber/Green to preserve risk signaling.
+     ------------------------------------------------------------------------ */
+  --color-primary: #0D9488;
+  --color-primary-hover: #0F766E;
+  --color-primary-subtle: #CCFBF1;
+  --color-primary-text: #FFFFFF;
+  --color-primary-dark: #115E59;
+
+  /* ------------------------------------------------------------------------
+     2. Grounded Neutral Canvas (Stone / Warm Slate)
+     Low-glare, reassuring base suitable for varied ambient lighting.
+     ------------------------------------------------------------------------ */
+  --color-bg: #F8F9FA;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #F1F5F9;
+  --color-surface-alt: #F8FAFC;
+  
+  --color-border: #E2E8F0;
+  --color-border-subtle: #EEF2F6;
+  --color-border-strong: #CBD5E1;
+
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748B;
+  --color-text-tertiary: #94A3B8;
+
+  /* ------------------------------------------------------------------------
+     3. Clinical Risk Tiers (STRICTLY RESERVED)
+     NEVER reuse these colors decoratively. Only for triage status & emergency.
+     ------------------------------------------------------------------------ */
+  /* High Risk / Hatari Kubwa */
+  --risk-high: #DC2626;
+  --risk-high-bg: #FEF2F2;
+  --risk-high-border: #FECACA;
+  --risk-high-text: #991B1B;
+
+  /* Medium Risk / Hatari ya Wastani */
+  --risk-medium: #D97706;
+  --risk-medium-bg: #FFFBEB;
+  --risk-medium-border: #FDE68A;
+  --risk-medium-text: #92400E;
+
+  /* Routine / Kawaida */
+  --risk-routine: #16A34A;
+  --risk-routine-bg: #F0FDF4;
+  --risk-routine-border: #BBF7D0;
+  --risk-routine-text: #166534;
+
+  /* Proxy Entry Badge (Logged by CHW / Imeandikwa na Mhudumu wa Afya) */
+  --proxy-badge-bg: #F1F5F9;
+  --proxy-badge-border: #CBD5E1;
+  --proxy-badge-text: #334155;
+
+  /* Offline Sync Status Indicators */
+  --sync-pending-dot: #94A3B8;
+  --sync-synced-dot: #475569;
+
+  /* ------------------------------------------------------------------------
+     4. Typography Scale (Workhorse mobile sans-serif)
+     High legibility on small-screen low-zoom Android displays.
+     ------------------------------------------------------------------------ */
+  --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.8125rem;  /* 13px */
+  --font-size-md: 0.9375rem;  /* 15px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ------------------------------------------------------------------------
+     5. Spacing & Touch Ergonomics
+     Ensuring minimum touch target >= 44px for safe, rapid interactions.
+     ------------------------------------------------------------------------ */
+  --min-tap-target: 44px;
+  
+  --spacing-1: 0.25rem;  /* 4px */
+  --spacing-2: 0.5rem;   /* 8px */
+  --spacing-3: 0.75rem;  /* 12px */
+  --spacing-4: 1rem;     /* 16px */
+  --spacing-5: 1.25rem;  /* 20px */
+  --spacing-6: 1.5rem;   /* 24px */
+  --spacing-8: 2rem;     /* 32px */
+  --spacing-10: 2.5rem;  /* 40px */
+
+  /* ------------------------------------------------------------------------
+     6. Border Radii & Elevation
+     ------------------------------------------------------------------------ */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.09), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-alert: 0 8px 30px rgba(220, 38, 38, 0.25);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
